@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcServer";
+option java_package = "app.grpc.highscores";
+option java_multiple_files = true;
+
+package Highscore;
+
+service HighscoreService {
+	rpc GetPuzzleHighscore (PuzzleRequest) returns (PuzzleReply);
+}
+
+message PuzzleRequest {
+	int32 puzzleId = 1;
+}
+
+message PuzzleReply {
+	repeated PuzzleHighscore highscores = 1;
+}
+
+message PuzzleHighscore {
+	int32 secondsToComplete = 1;
+	string attemptName = 2;
+}

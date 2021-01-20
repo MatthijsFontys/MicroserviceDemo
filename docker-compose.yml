@@ -1,0 +1,26 @@
+version: '3.9'
+services:
+  mssql:
+    image: 'mcr.microsoft.com/mssql/server:2017-latest'
+    container_name: sqlasp
+    ports:
+      - '1433:1433'
+    volumes:
+      - 'asp_microservice_volume:/var/opt/mssql'
+    environment:
+      SA_PASSWORD: AspMicroservice123!
+      ACCEPT_EULA: 'Y'
+  postgres:
+    image: 'postgres:latest'
+    container_name: postgres-maven
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'java_microservice_volume:/var/lib/postgresql/data'
+    environment:
+      POSTGRES_PASSWORD: JavaMicroservice123!
+volumes:
+  asp_microservice_volume:
+    external: true
+  java_microservice_volume:
+    external: true

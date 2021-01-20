@@ -1,0 +1,40 @@
+﻿@model PuzzleHighscoreViewModel
+
+@{
+    ViewData["Title"] = "Highscores";
+}
+
+<h3>Highscores for puzzle <strong>@Html.DisplayFor(model => model.Name)</strong></h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                # Nr
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Highscores.First().PlayerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Highscores.First().CompletionTimeFormatted)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@for (int i=0; i< Model.Highscores.Count; i++) {
+    var highscore = Model.Highscores[i];
+        <tr>
+            <td>
+                @(i+1)
+            </td>
+            <td>
+                @Html.DisplayName(highscore.PlayerName)
+            </td>
+            <td>
+                @Html.DisplayName(highscore.CompletionTimeFormatted)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

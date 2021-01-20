@@ -1,0 +1,39 @@
+
+# Ports
+server:
+  applicationConnectors:
+    - type: http
+      port: 9200
+  adminConnectors:
+    - type: http
+      port: 9300
+
+
+
+# Message resource
+template: Hello, %s!
+defaultName: Unknown Entity
+
+
+database:
+  driverClass: org.postgresql.Driver
+  user: postgres
+  password: JavaMicroservice123!
+  #url: jdbc:postgresql://db.example.com/db-prod
+  url: jdbc:postgresql://localhost:5432/Content
+
+  # JDBC driver properties:
+  properties:
+    charSet: UTF-8
+    hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  # the maximum amount of time to wait on an empty pool before throwing an exception
+  maxWaitForConnection: 10s
+
+  # Query used during health checks
+  validationQuery: "/* MyApplication Health Check */ SELECT 1"
+
+  # Connections
+  minSize: 8
+  maxSize: 32
+  checkConnectionWhileIdle: false
